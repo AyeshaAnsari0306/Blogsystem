@@ -6,6 +6,8 @@
         <ul class="flex space-x-6">
             <li><a href="{{ route('dashboard') }}" class="hover:underline">Dashboard</a></li>
             <li><a href="{{ route('posts.index') }}" class="hover:underline">Manage Posts</a></li>
+            <li><a href="{{ route('posts.my') }}" class="hover:underline">My Posts</a></li>
+            <li><a href="{{ route('posts.all') }}" class="hover:underline">All Posts</a></li>
             <li><a href="{{ route('posts.create') }}" class="hover:underline">Create Post</a></li>
             <li>
             <div class="hidden sm:flex sm:items-center sm:ms-6">

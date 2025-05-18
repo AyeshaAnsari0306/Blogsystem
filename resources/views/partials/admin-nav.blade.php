@@ -4,7 +4,7 @@
         <li><a href="{{ route('posts.index') }}" class="hover:underline">All Posts</a></li>
         <li><a href="#" class="hover:underline">Manage Users</a></li>
         <li><a href="{{ route('categories.index') }}" class="hover:underline">Categories</a></li>
-        <li><a href="#" class="hover:underline">Comments</a></li>
+        <li><a href="{{ route('comments.index') }}" class="hover:underline">Comments</a></li>
         <li> <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">

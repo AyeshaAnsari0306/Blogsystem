@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests; 
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +19,17 @@ class PostController extends Controller
     
         return view('posts.index', compact('posts'));
     }
+    public function myPosts()
+{
+    $posts = Post::where('user_id', auth()->id())->latest()->get();
+    return view('posts.my-posts', compact('posts'));
+}
+public function allPosts()
+{
+    $posts = Post::latest()->get();
+    return view('posts.all-posts', compact('posts'));
+}
+
 public function create()
 {
     $categories = Category::all();
@@ -49,13 +60,21 @@ public function store(Request $request)
 
 public function edit(Post $post)
 {
+    if ($post->user_id !== auth()->id()) {
+        abort(403, 'Unauthorized action.');
+    }
+
     $categories = Category::all();
     return view('posts.edit', compact('post', 'categories'));
 }
 
 public function update(Request $request, Post $post)
 {
-    $request->validate([
+     if ($post->user_id !== auth()->id()) {
+        abort(403, 'Unauthorized action.');
+    }
+    $this->authorize('update', $post);
+        $request->validate([
         'title' => 'required',
         'body' => 'required',
         'categories' => 'required|array',
@@ -71,5 +90,21 @@ public function update(Request $request, Post $post)
 
     return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
 }
+public function destroy(Post $post)
+{
+     if ($post->user_id !== auth()->id()) {
+        abort(403, 'Unauthorized action.');
+    }
+    $this->authorize('delete', $post);
+    $post->delete();
+    return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
+}
+public function show(Post $post)
+{
+    $post->load('comments.user'); // Eager load comments + user
+
+    return view('posts.show', compact('post'));
+}
+
 
 }
