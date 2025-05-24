@@ -9,8 +9,7 @@ class Comment extends Model
     protected $fillable = [
         'body', 'user_id', 'post_id'
     ];
-
-    // 👇 Add this relationship
+    
     public function post()
     {
         return $this->belongsTo(Post::class);

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\CategoryController;
 
 
@@ -36,6 +36,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::resource('categories', \App\Http\Controllers\CategoryController::class);
     Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+    Route::get('/users', [UserManagementController::class, 'index'])->name('users.index');
+    Route::get('/users/{user}/edit', [UserManagementController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [UserManagementController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [UserManagementController::class, 'destroy'])->name('users.destroy');
 });
 
 

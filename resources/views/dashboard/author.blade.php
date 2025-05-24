@@ -51,10 +51,19 @@
     <div>
         <h2 class="text-2xl font-bold mb-4">My Recent Posts</h2>
         <div class="space-y-6">
-            @forelse($recentPosts as $post)
+            @forelse($recentPosts as $post)            
                 <div class="bg-white p-6 rounded shadow">
                     <div class="flex items-center justify-between mb-2">
                         <h3 class="text-xl font-semibold">{{ $post->title }}</h3>
+                        <p class="text-sm text-gray-500 mb-2">
+    <strong>Categories:</strong>
+    @forelse ($post->categories as $category)
+        <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded text-xs">{{ $category->name }}</span>
+    @empty
+        <span class="text-gray-400">No categories</span>
+    @endforelse
+</p>
+
                         <small class="text-gray-500">{{ $post->created_at->diffForHumans() }}</small>
                     </div>
                     <p class="text-gray-700 mb-4">{{ Str::limit($post->body, 120) }}</p>

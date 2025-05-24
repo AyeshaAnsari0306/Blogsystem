@@ -20,6 +20,15 @@
             <div class="border p-4 rounded shadow">
                 <img src="{{ asset('storage/' . $post->thumbnail) }}" class="w-full h-48 object-cover rounded">
                 <h2 class="text-xl font-semibold">{{ $post->title }}</h2>
+                <p class="text-sm text-gray-500 mb-2">
+    <strong>Categories:</strong>
+    @forelse ($post->categories as $category)
+        <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded text-xs">{{ $category->name }}</span>
+    @empty
+        <span class="text-gray-400">No categories</span>
+    @endforelse
+</p>
+
                 <p class="text-gray-600">By: {{ $post->user->name }}</p>
 
                 <div class="mt-4">

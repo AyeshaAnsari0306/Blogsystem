@@ -2,7 +2,7 @@
     <ul class="flex space-x-6">
         <li><a href="{{ route('dashboard') }}" class="hover:underline">Dashboard</a></li>
         <li><a href="{{ route('posts.index') }}" class="hover:underline">All Posts</a></li>
-        <li><a href="#" class="hover:underline">Manage Users</a></li>
+        <li><a href="{{ route('users.index') }}" class="hover:underline">Manage Users</a></li>
         <li><a href="{{ route('categories.index') }}" class="hover:underline">Categories</a></li>
         <li><a href="{{ route('comments.index') }}" class="hover:underline">Comments</a></li>
         <li> <div class="hidden sm:flex sm:items-center sm:ms-6">

@@ -101,7 +101,7 @@ public function destroy(Post $post)
 }
 public function show(Post $post)
 {
-    $post->load('comments.user'); // Eager load comments + user
+    $post->load('comments.user'); //load comments + user
 
     return view('posts.show', compact('post'));
 }

@@ -21,7 +21,12 @@
                 <img src="{{ asset('storage/' . $post->thumbnail) }}" class="w-full h-48 object-cover rounded">
                 <h2 class="text-xl font-semibold">{{ $post->title }}</h2>
                 <p class="text-gray-600">By: {{ $post->user->name }}</p>
-
+                <p class="mt-2 text-sm text-gray-500">
+            <strong>Categories:</strong>
+            @foreach ($post->categories as $category)
+                <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded text-xs">{{ $category->name }}</span>
+            @endforeach
+        </p>
                 <div class="mt-4">
                     <a href="{{ route('posts.edit', $post) }}" class="text-blue-500">Edit</a>
                     <a href="{{ route('posts.show', $post) }}" class="text-green-600 font-medium">View</a>

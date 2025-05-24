@@ -11,6 +11,15 @@
     <p class="mb-4">{{ $post->body }}</p>
 
     <hr class="my-6">
+    <p class="text-sm text-gray-500 mb-2">
+    <strong>Categories:</strong>
+    @forelse ($post->categories as $category)
+        <span class="bg-gray-200 text-gray-800 px-2 py-1 rounded text-xs">{{ $category->name }}</span>
+    @empty
+        <span class="text-gray-400">No categories</span>
+    @endforelse
+</p>
+
 
     <h2 class="text-xl font-semibold mb-2">Comments</h2>
 

@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {
         if (Auth::user()->hasRole('Admin')) {
             return view('dashboard.admin', [
-                'recentPosts' => Post::latest()->take(5)->get(),
+                'recentPosts' => Post::with('categories')->latest()->take(5)->get(),
                 'postCount' => Post::count(),
                 'userRoles' => Role::withCount('users')->get(),
                 'commentsCount' => Comment::count(),
@@ -22,7 +22,7 @@ class DashboardController extends Controller
             $userId = auth()->id();
 
             return view('dashboard.author', [
-                'recentPosts' => Post::where('user_id', $userId)->latest()->take(5)->get(),
+                'recentPosts' => Post::with('categories')->where('user_id', $userId)->latest()->take(5)->get(),
                 'postCount' => Post::where('user_id', $userId)->count(),
                 'commentsCount' => Comment::whereHas('post', function($query) use ($userId) {
                     $query->where('user_id', $userId);
