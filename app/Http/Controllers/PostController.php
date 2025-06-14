@@ -73,7 +73,7 @@ public function update(Request $request, Post $post)
      if ($post->user_id !== auth()->id()) {
         abort(403, 'Unauthorized action.');
     }
-    $this->authorize('update', $post);
+    //$this->authorize('update', $post);
         $request->validate([
         'title' => 'required',
         'body' => 'required',
@@ -95,7 +95,7 @@ public function destroy(Post $post)
      if ($post->user_id !== auth()->id()) {
         abort(403, 'Unauthorized action.');
     }
-    $this->authorize('delete', $post);
+    //$this->authorize('delete', $post);
     $post->delete();
     return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
 }
