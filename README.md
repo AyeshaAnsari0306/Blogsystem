@@ -1,3 +1,32 @@
+# 📝 Blogsystem
+
+A Laravel-based blog platform that includes:
+
+- 🔐 User authentication and roles (Admin & User)
+- ✍️ Create, update, delete blog posts
+- 💬 Post comments system
+- 🗂️ Category management
+- 🧑‍💼 Admin dashboard for managing users and posts
+
+## 🚀 Tech Stack
+
+- Laravel 12
+- Blade Templates
+- Bootstrap (for styling)
+- MySQL
+- Auth & Middleware
+
+## 📦 Installation Steps
+
+```bash
+git clone https://github.com/AyeshaAnsari0306/Blogsystem.git
+cd Blogsystem
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan serve
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
